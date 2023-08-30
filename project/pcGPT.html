@@ -11,44 +11,23 @@
 <body>
     <!-- header -->
     <header class="layout-header">
-        <h1>컴잘알AI</h1>
-        <div>
-            <a href="https://shop.danawa.com/virtualestimate/?controller=estimateMain&methods=index&marketPlaceSeq=16">다나와
-                pc견적 바로가기</a>
-        </div>
+        <h1 id="home">컴잘알AI</h1>
     </header>
     <!-- header끝 -->
 
     <!-- main -->
     <main class="layout-main">
-        <!-- 정보들을 입력받을 form -->
-        <form>
-            <div>
-                <label for="budget">예산</label>
-                <input type="text" id="budget">
-            </div>
-            <div>
-                <label for="task">컴퓨터로 할 작업</label>
-                <input type="text" id="task">
-            </div>
-            <div>
-                <label for="monitor">같이 쓸 모니터 사양</label>
-                <input type="text" id="monitor">
-            </div>
-            <div>
-                <label for="etc">추가로 요구사항 또는 기타 요청</label>
-                <textarea id="etc" cols="30" rows="5"></textarea>
-            </div>
-            <button type="submit">컴퓨터 견적 짜기</button>
-        </form>
-        <!-- form끝 -->
+
+        <div class="select">
+            <div class="recommend">PC 견적 추천</div>
+            <div class="question">PC에 대한 질문 & PC문제 진단</div>
+        </div>
+        <div class="selected">
+        </div>
 
         <!-- gpt가 말한 결과값을 보여줄 컨테이너 -->
         <div class="resultContainer">
-
         </div>
-
-
     </main>
     <!-- main끝 -->
 
@@ -58,6 +37,6 @@
     </footer>
     <!-- // footer끝 -->
 </body>
-<script src="./pcGPT.js"></script>
+<script type="module" src="./pcGPT.js"></script>
 
 </html>
