@@ -26,4 +26,5 @@ export function createChat(text, isUser){
     chat.className = isUser ? 'userchat' : 'aichat';
     chat.textContent = text;
     return chat;
+    
 }

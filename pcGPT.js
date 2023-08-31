@@ -71,7 +71,7 @@ $recommend.addEventListener('click', e => {
     $submitButton.addEventListener('click', e => {
         $resultContainer.innerHTML = "컴퓨터 견적을 짜고 있습니다 잠시만 기다려주세요.";
         e.preventDefault();
-        const contents = $budget.value + ", " + $task.value + ", " + $monitor.value + ", " + $etc.value
+        const contents = $budget.value + "의 예산과 " + $task.value + "등을 하면서 " + $monitor.value + "사양이 모니터를 쓸 때 " + $etc.value +" , 컴퓨터 견적 추천해줘."
         data.push({
             "role": "user",
             "content": contents
@@ -141,23 +141,33 @@ $question.addEventListener('click', e => {
         e.preventDefault();
         const contents = $inputQuestion.value;
         $inputQuestion.value = "";
-        if(contents == ""){
+        if (contents == "") {
             $inputQuestion.focus();
-        }else{
-            const newchat = createChat(contents, true);
-        if ($resultContainer.firstChild) {
-            const firstChild = $resultContainer.firstChild;
-            $resultContainer.insertBefore(newchat, firstChild);
         } else {
-            $resultContainer.appendChild(newchat);
-        }
-        data2.push({
-            "role": "user",
-            "content": contents
-        })
-        await questionchatGPTAPI();
-        const reply = createChat(data2[data2.length - 1].content, false);
-        const firstChild2 = $resultContainer.firstChild; $resultContainer.insertBefore(reply, firstChild2);
+            const newchat = createChat(contents, true);
+            if ($resultContainer.firstChild) {
+                const firstChild = $resultContainer.firstChild;
+                $resultContainer.insertBefore(newchat, firstChild);
+            } else {
+                $resultContainer.appendChild(newchat);
+            }
+            data2.push({
+                "role": "user",
+                "content": contents
+            })
+            const typing = document.createElement('div');
+            typing.className = 'typing';
+            const typetext = document.createElement('p');
+            typetext.innerText = "잠시만 기다려주세요..";
+            typing.append(typetext);
+            const firstChild2 = $resultContainer.firstChild;
+            $resultContainer.insertBefore(typing, firstChild2);
+
+            await questionchatGPTAPI();
+            $resultContainer.removeChild(typing);
+            const reply = createChat(data2[data2.length - 1].content, false);
+            const firstChild3 = $resultContainer.firstChild;
+            $resultContainer.insertBefore(reply, firstChild3);
         }
     })
 
