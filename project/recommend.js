@@ -126,6 +126,9 @@ export function splitArr(result) {
         if (pc[j] === -1) {
             return -1;
         }
+        else if(pc[j].includes('~')){
+            return -1;
+        }
     }
     return pc;
 }

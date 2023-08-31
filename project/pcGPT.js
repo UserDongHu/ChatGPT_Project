@@ -3,6 +3,7 @@ import { createQuestion, createChat } from "./question.js";
 
 const $home = document.querySelector('#home');
 const $select = document.querySelector('.select');
+const $show = document.querySelector('.show');
 const $selected = document.querySelector('.selected');
 const $recommend = document.querySelector('.recommend');
 const $question = document.querySelector('.question');
@@ -10,12 +11,14 @@ const $resultContainer = document.querySelector('.resultContainer');
 
 $home.addEventListener('click', e => {
     $select.style.display = '';
+    $show.style.display = 'none';
     $selected.innerHTML = "";
     $resultContainer.innerHTML = "";
 })
 
 $recommend.addEventListener('click', e => {
     $select.style.display = 'none';
+    $show.style.display = '';
     $selected.innerHTML = "";
     const recommendform = createRecommend();
     $selected.append(recommendform);
@@ -43,7 +46,7 @@ $recommend.addEventListener('click', e => {
     )
 
     $button.addEventListener('click', e => {
-        $resultContainer.innerHTML = "";
+        $resultContainer.innerHTML = "컴퓨터 견적을 짜고 있습니다 잠시만 기다려주세요.";
         e.preventDefault();
         const contents = $budget.value + ", " + $task.value + ", " + $monitor.value + ", " + $etc.value
         data.push({
@@ -69,9 +72,10 @@ $recommend.addEventListener('click', e => {
                 const pc = splitArr(result);
                 if (pc === -1) {
                     console.log(pc);
-                    $resultContainer.innerText = `오류가 발생했습니다. 다시 한번 시도해주세요.`
+                    $resultContainer.innerText = `오류가 발생했습니다. 더 자세하게 적으시고 다시 시도해주세요.`
                 } else {
                     const mypc = createPC(pc);
+                    $resultContainer.innerHTML="";
                     $resultContainer.appendChild(mypc);
                 }
             })
@@ -81,6 +85,7 @@ $recommend.addEventListener('click', e => {
 
 $question.addEventListener('click', e => {
     $select.style.display = 'none';
+    $show.style.display = '';
     $selected.innerHTML = "";
     const questionform = createQuestion();
     $selected.append(questionform);
@@ -101,14 +106,19 @@ $question.addEventListener('click', e => {
         const contents = $inputQuestion.value;
         $inputQuestion.value = "";
         const newchat = createChat(contents, true);
-        $resultContainer.appendChild(newchat);
+        if($resultContainer.firstChild){
+            const firstChild = $resultContainer.firstChild;
+            $resultContainer.insertBefore(newchat, firstChild);
+        }else{
+            $resultContainer.appendChild(newchat);
+        }
         data2.push({
             "role": "user",
             "content": contents
         })
         await questionchatGPTAPI();
         const reply = createChat(data2[data2.length - 1].content, false);
-        $resultContainer.append(reply);
+        const firstChild2 = $resultContainer.firstChild;$resultContainer.insertBefore(reply, firstChild2);
     })
 
     async function questionchatGPTAPI() {
