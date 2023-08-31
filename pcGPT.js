@@ -1,4 +1,4 @@
-import { createRecommend, createPC, splitArr } from "./recommend.js";
+import { createRecommend, createPC, splitArr, splitArr2, saveLocal, getLocal, deleteLocal } from "./recommend.js";
 import { createQuestion, createChat } from "./question.js";
 
 const $home = document.querySelector('#home');
@@ -27,17 +27,18 @@ $recommend.addEventListener('click', e => {
     const $task = document.querySelector('#task');
     const $monitor = document.querySelector('#monitor');
     const $etc = document.querySelector('#etc');
-    const $button = document.querySelector('button');
+    const $showsaveButton = document.querySelector('.showsaveButton');
+    const $submitButton = document.querySelector('.submitButton');
 
     const data = [];
     data.push(
         {
             "role": "system",
-            "content": "assistant는 예산과 할 작업, 같이 쓸 모니터 사양을 토대로 컴퓨터 견적을 추천해줍니다."
+            "content": "assistant는 사용될 예산과 할 작업, 같이 쓸 모니터 사양과 추가 요구사항을 입력받아서 컴퓨터 견적을 추천해줍니다. 만약 추가 요구사항이 없다면 사용될 예산에 맞게 적절한 컴퓨터 견적을 추천해줍니다."
         },
         {
             "role": "user",
-            "content": "CPU : ~ (약 ~만원), 메인보드 : ~ (약 ~만원), 메모리 : ~  (약 ~만원), GPU : ~ (약 ~만원), 저장장치 : ~ (약 ~만원),  파워 : ~ (약 ~만원), 총 견적 : 약 ~만원 이런식으로 결과를 보여줘"
+            "content": "CPU: ~ (약 ~만원), 메인보드: ~ (약 ~만원), 메모리: ~  (약 ~만원), GPU: ~ (약 ~만원), 저장장치: ~ (약 ~만원),  파워: ~ (약 ~만원), 총 견적: 약 ~만원 이런식으로 결과를 보여줘"
         },
         {
             "role": "user",
@@ -45,7 +46,29 @@ $recommend.addEventListener('click', e => {
         }
     )
 
-    $button.addEventListener('click', e => {
+    $showsaveButton.addEventListener('click', e => {
+        $resultContainer.innerHTML = "";
+        if (getLocal() === -1) {
+            $resultContainer.innerHTML = "저장된 견적이 없습니다."
+        } else {
+            const pc = splitArr2(getLocal());
+            const mypc = createPC(pc);
+            $resultContainer.appendChild(mypc);
+
+            const $delete = document.createElement('button');
+            $delete.innerText = '저장된 견적 삭제';
+            $delete.addEventListener('click', function () {
+                if (window.confirm("저장된 견적을 삭제하시겠습니까?")) {
+                    deleteLocal();
+                    $resultContainer.innerHTML = "";
+                }
+            });
+            $resultContainer.append($delete);
+        }
+
+    })
+
+    $submitButton.addEventListener('click', e => {
         $resultContainer.innerHTML = "컴퓨터 견적을 짜고 있습니다 잠시만 기다려주세요.";
         e.preventDefault();
         const contents = $budget.value + ", " + $task.value + ", " + $monitor.value + ", " + $etc.value
@@ -53,7 +76,7 @@ $recommend.addEventListener('click', e => {
             "role": "user",
             "content": contents
         })
-        
+
         recommendchatGPTAPI()
     })
 
@@ -71,12 +94,25 @@ $recommend.addEventListener('click', e => {
                 let result = json.choices[0].message.content;
                 const pc = splitArr(result);
                 if (pc === -1) {
-                    console.log(pc);
+                    console.log(result);
                     $resultContainer.innerText = `오류가 발생했습니다. 더 자세하게 적으시고 다시 시도해주세요.`
                 } else {
                     const mypc = createPC(pc);
-                    $resultContainer.innerHTML="";
+                    $resultContainer.innerHTML = "";
                     $resultContainer.appendChild(mypc);
+
+                    const $save = document.createElement('button');
+                    $save.innerText = '견적 저장';
+                    $save.addEventListener('click', function () {
+                        if (getLocal() === -1) {
+                            saveLocal(pc);
+                        } else {
+                            if (window.confirm("저장된 견적을 지우고 새로 저장하시겠습니까?")) {
+                                saveLocal(pc);
+                            }
+                        }
+                    });
+                    $resultContainer.append($save);
                 }
             })
     }
@@ -105,11 +141,14 @@ $question.addEventListener('click', e => {
         e.preventDefault();
         const contents = $inputQuestion.value;
         $inputQuestion.value = "";
-        const newchat = createChat(contents, true);
-        if($resultContainer.firstChild){
+        if(contents == ""){
+            $inputQuestion.focus();
+        }else{
+            const newchat = createChat(contents, true);
+        if ($resultContainer.firstChild) {
             const firstChild = $resultContainer.firstChild;
             $resultContainer.insertBefore(newchat, firstChild);
-        }else{
+        } else {
             $resultContainer.appendChild(newchat);
         }
         data2.push({
@@ -118,7 +157,8 @@ $question.addEventListener('click', e => {
         })
         await questionchatGPTAPI();
         const reply = createChat(data2[data2.length - 1].content, false);
-        const firstChild2 = $resultContainer.firstChild;$resultContainer.insertBefore(reply, firstChild2);
+        const firstChild2 = $resultContainer.firstChild; $resultContainer.insertBefore(reply, firstChild2);
+        }
     })
 
     async function questionchatGPTAPI() {

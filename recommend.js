@@ -46,8 +46,15 @@ export function createRecommend() {
 
     const submitButton = document.createElement('button');
     submitButton.setAttribute('type', 'submit');
+    submitButton.className = "submitButton";
     submitButton.textContent = '컴퓨터 견적 추천';
     form.appendChild(submitButton);
+
+    const showsaveButton = document.createElement('button');
+    showsaveButton.setAttribute('type', 'button');
+    showsaveButton.className = "showsaveButton";
+    showsaveButton.textContent = '저장한 견적 보기';
+    form.appendChild(showsaveButton);
 
     return form;
 }
@@ -80,7 +87,7 @@ export function createPC(pc) {
     $GPU.innerHTML = pc[3] + "<br>";
     $GPU.setAttribute('href', searchURL + pc[3]);
     $GPU.setAttribute('target', '_blank');
-    
+
     $storage.innerHTML = pc[4] + "<br>";
     $storage.setAttribute('href', searchURL + pc[4]);
     $storage.setAttribute('target', '_blank');
@@ -100,25 +107,25 @@ export function splitArr(result) {
     let arr = result.split('\n');
     let pc = [-1, -1, -1, -1, -1, -1, -1];
     for (let i = 0; i < arr.length; i++) {
-        if (arr[i].includes('CPU')) {
+        if (arr[i].includes('CPU:') || arr[i].includes('CPU :')) {
             pc[0] = arr[i];
         }
-        else if (arr[i].includes('메인보드')) {
+        else if (arr[i].includes('메인보드:') || arr[i].includes('메인보드 :')) {
             pc[1] = arr[i];
         }
-        else if (arr[i].includes('메모리')) {
+        else if (arr[i].includes('메모리:') || arr[i].includes('메모리 :')) {
             pc[2] = arr[i];
         }
-        else if (arr[i].includes('GPU')) {
+        else if (arr[i].includes('GPU:') || arr[i].includes('GPU :')) {
             pc[3] = arr[i];
         }
-        else if (arr[i].includes('저장장치')) {
+        else if (arr[i].includes('저장장치:') || arr[i].includes('저장장치 :')) {
             pc[4] = arr[i];
         }
-        else if (arr[i].includes('파워')) {
+        else if (arr[i].includes('파워:') || arr[i].includes('파워 :')) {
             pc[5] = arr[i];
         }
-        else if (arr[i].includes('총 견적')) {
+        else if (arr[i].includes('총 견적:') || arr[i].includes('총 견적 :')) {
             pc[6] = arr[i];
         }
     }
@@ -126,9 +133,50 @@ export function splitArr(result) {
         if (pc[j] === -1) {
             return -1;
         }
-        else if(pc[j].includes('~')){
+        else if (pc[j].includes('~')) {
             return -1;
         }
     }
     return pc;
+}
+
+export function splitArr2(result) {
+    let arr = result.split(',');
+    let pc = [-1, -1, -1, -1, -1, -1, -1];
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].includes('CPU:') || arr[i].includes('CPU :')) {
+            pc[0] = arr[i];
+        }
+        else if (arr[i].includes('메인보드:') || arr[i].includes('메인보드 :')) {
+            pc[1] = arr[i];
+        }
+        else if (arr[i].includes('메모리:') || arr[i].includes('메모리 :')) {
+            pc[2] = arr[i];
+        }
+        else if (arr[i].includes('GPU:') || arr[i].includes('GPU :')) {
+            pc[3] = arr[i];
+        }
+        else if (arr[i].includes('저장장치:') || arr[i].includes('저장장치 :')) {
+            pc[4] = arr[i];
+        }
+        else if (arr[i].includes('파워:') || arr[i].includes('파워 :')) {
+            pc[5] = arr[i];
+        }
+        else if (arr[i].includes('총 견적:') || arr[i].includes('총 견적 :')) {
+            pc[6] = arr[i];
+        }
+    }
+    return pc;
+}
+
+export function saveLocal(pc) {
+    localStorage.setItem("savepc", pc);
+}
+
+export function getLocal(pc) {
+    return localStorage.getItem("savepc") ? localStorage.getItem("savepc") : -1;
+}
+
+export function deleteLocal() {
+    localStorage.removeItem("savepc");
 }
