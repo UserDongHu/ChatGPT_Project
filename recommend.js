@@ -38,7 +38,8 @@ export function createRecommend() {
     const etcLabel = document.createElement('label');
     etcLabel.setAttribute('for', 'etc');
     etcLabel.textContent = '추가 요구사항 또는 기타 요청';
-    const etcTextarea = document.createElement('textarea');
+    const etcTextarea = document.createElement('input');
+    etcTextarea.setAttribute('type', 'text');
     etcTextarea.setAttribute('id', 'etc');
     etcDiv.appendChild(etcLabel);
     etcDiv.appendChild(etcTextarea);

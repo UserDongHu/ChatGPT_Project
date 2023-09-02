@@ -7,7 +7,8 @@ export function createQuestion(){
     label.setAttribute('for', 'inputquestion');
     label.textContent = '어떤 것이 궁금하신가요?';
     
-    const textarea = document.createElement('textarea');
+    const textarea = document.createElement('input');
+    textarea.setAttribute('type', 'text');
     textarea.setAttribute('id', 'inputquestion');
 
     const submitButton = document.createElement('button');

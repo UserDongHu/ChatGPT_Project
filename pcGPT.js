@@ -69,7 +69,7 @@ $recommend.addEventListener('click', e => {
     })
 
     $submitButton.addEventListener('click', e => {
-        $resultContainer.innerHTML = "컴퓨터 견적을 짜고 있습니다 잠시만 기다려주세요.";
+        $resultContainer.innerHTML = "<div>컴퓨터 견적을 짜고 있습니다 잠시만 기다려주세요.</div>";
         e.preventDefault();
         const contents = $budget.value + "의 예산과 " + $task.value + "등을 하면서 " + $monitor.value + "사양이 모니터를 쓸 때 " + $etc.value +" , 컴퓨터 견적 추천해줘."
         data.push({
@@ -95,7 +95,7 @@ $recommend.addEventListener('click', e => {
                 const pc = splitArr(result);
                 if (pc === -1) {
                     console.log(result);
-                    $resultContainer.innerText = `오류가 발생했습니다. 더 자세하게 적으시고 다시 시도해주세요.`
+                    $resultContainer.innerHTML = `<div>오류가 발생했습니다. 더 자세하게 적으시고 다시 시도해주세요.</div>`;
                 } else {
                     const mypc = createPC(pc);
                     $resultContainer.innerHTML = "";
