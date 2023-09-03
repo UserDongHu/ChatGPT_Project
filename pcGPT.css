@@ -1,4 +1,12 @@
+@font-face {
+    font-family: 'DungGeunMo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 * {
+    font-family: 'DungGeunMo';
     margin: 0;
     padding: 0;
     position: relative;
@@ -85,7 +93,7 @@ body {
 .show textarea{
     padding: 0 10px;
     border: 0;
-    width: 500px;
+    width: 450px;
     height: 90%;
     box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -135,6 +143,8 @@ form div {
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     border: 1px solid rgba(255, 255, 255, 0.18);
+    max-height: 570px;
+    overflow-y: auto;
 }
 
 .resultContainer::after{
@@ -186,6 +196,11 @@ form div {
 }
 
 .resultContainer .typing p{
+    animation: blink-effect 1s step-end infinite;
+    line-height: normal;
+}
+
+.resultContainer .waiting p{
     animation: blink-effect 1s step-end infinite;
     line-height: normal;
 }

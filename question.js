@@ -10,6 +10,7 @@ export function createQuestion(){
     const textarea = document.createElement('input');
     textarea.setAttribute('type', 'text');
     textarea.setAttribute('id', 'inputquestion');
+    textarea.setAttribute('placeholder', 'ex) rtx3060이 어떤지 알려줘, 모니터 출력이 안나와, 키보드 추천해줘')
 
     const submitButton = document.createElement('button');
     submitButton.setAttribute('type', 'submit');

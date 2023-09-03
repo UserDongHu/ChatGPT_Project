@@ -8,6 +8,7 @@ export function createRecommend() {
     const budgetInput = document.createElement('input');
     budgetInput.setAttribute('type', 'text');
     budgetInput.setAttribute('id', 'budget');
+    budgetInput.setAttribute('placeholder', 'ex) 50만원, 100만원, 200만원');
     budgetDiv.appendChild(budgetLabel);
     budgetDiv.appendChild(budgetInput);
     form.appendChild(budgetDiv);
@@ -19,6 +20,7 @@ export function createRecommend() {
     const taskInput = document.createElement('input');
     taskInput.setAttribute('type', 'text');
     taskInput.setAttribute('id', 'task');
+    taskInput.setAttribute('placeholder', 'ex) 고사양 게임, 그래픽 디자인, 코딩, 문서작업 등');
     taskDiv.appendChild(taskLabel);
     taskDiv.appendChild(taskInput);
     form.appendChild(taskDiv);
@@ -30,6 +32,7 @@ export function createRecommend() {
     const monitorInput = document.createElement('input');
     monitorInput.setAttribute('type', 'text');
     monitorInput.setAttribute('id', 'monitor');
+    monitorInput.setAttribute('placeholder', 'ex) FHD 75hz, QHD 144hz, 4K 60hz 등');
     monitorDiv.appendChild(monitorLabel);
     monitorDiv.appendChild(monitorInput);
     form.appendChild(monitorDiv);
@@ -41,6 +44,7 @@ export function createRecommend() {
     const etcTextarea = document.createElement('input');
     etcTextarea.setAttribute('type', 'text');
     etcTextarea.setAttribute('id', 'etc');
+    etcTextarea.setAttribute('placeholder', 'ex) AMD CPU를 사용, 램은 16G, 그래픽카드를 좋은걸로, 최대한 가성비');
     etcDiv.appendChild(etcLabel);
     etcDiv.appendChild(etcTextarea);
     form.appendChild(etcDiv);
@@ -117,13 +121,13 @@ export function splitArr(result) {
         else if (arr[i].includes('메모리:') || arr[i].includes('메모리 :')) {
             pc[2] = arr[i];
         }
-        else if (arr[i].includes('GPU:') || arr[i].includes('GPU :')) {
+        else if (arr[i].includes('GPU:') || arr[i].includes('GPU :') || arr[i].includes('그래픽카드 :') || arr[i].includes('그래픽카드:') || arr[i].includes('그래픽 카드:') || arr[i].includes('그래픽 카드 :')) {
             pc[3] = arr[i];
         }
         else if (arr[i].includes('저장장치:') || arr[i].includes('저장장치 :')) {
             pc[4] = arr[i];
         }
-        else if (arr[i].includes('파워:') || arr[i].includes('파워 :')) {
+        else if (arr[i].includes('파워:') || arr[i].includes('파워 :') || arr[i].includes('파워 서플라이:') || arr[i].includes('파워 서플라이 :')) {
             pc[5] = arr[i];
         }
         else if (arr[i].includes('총 견적:') || arr[i].includes('총 견적 :')) {

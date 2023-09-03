@@ -49,7 +49,7 @@ $recommend.addEventListener('click', e => {
     $showsaveButton.addEventListener('click', e => {
         $resultContainer.innerHTML = "";
         if (getLocal() === -1) {
-            $resultContainer.innerHTML = "저장된 견적이 없습니다."
+            $resultContainer.innerHTML = "<div>저장된 견적이 없습니다.</div>"
         } else {
             const pc = splitArr2(getLocal());
             const mypc = createPC(pc);
@@ -69,9 +69,15 @@ $recommend.addEventListener('click', e => {
     })
 
     $submitButton.addEventListener('click', e => {
-        $resultContainer.innerHTML = "<div>컴퓨터 견적을 짜고 있습니다 잠시만 기다려주세요.</div>";
+        $resultContainer.innerHTML = "";
+        const typing = document.createElement('div');
+        typing.className = 'waiting';
+        const typetext = document.createElement('p');
+        typetext.innerText = "잠시만 기다려주세요..";
+        typing.append(typetext);
+        $resultContainer.append(typing);
         e.preventDefault();
-        const contents = $budget.value + "의 예산과 " + $task.value + "등을 하면서 " + $monitor.value + "사양이 모니터를 쓸 때 " + $etc.value +" , 컴퓨터 견적 추천해줘."
+        const contents = $budget.value + "의 예산과 " + $task.value + "등을 하면서 " + $monitor.value + "사양이 모니터를 쓸 때 " + $etc.value + " , 컴퓨터 견적 추천해줘."
         data.push({
             "role": "user",
             "content": contents
