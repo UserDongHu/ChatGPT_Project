@@ -9,6 +9,8 @@ const $recommend = document.querySelector('.recommend');
 const $question = document.querySelector('.question');
 const $resultContainer = document.querySelector('.resultContainer');
 
+
+
 $home.addEventListener('click', e => {
     $select.style.display = '';
     $show.style.display = 'none';
