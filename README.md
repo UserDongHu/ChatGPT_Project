@@ -15,15 +15,31 @@
   * ChatGPT를 활용해서 부족한 컴퓨터 지식을 챗봇에게 물어볼 수 있음
 ## 2. 개발 환경 및 배포 URL
   2.1 개발 환경
-
+  * Web 구현
+     * JavaScript
+  * 서비스 배포
+     * Github Page
+   
   2.2 배포 URL
+  
+  https://userdonghu.github.io/chatGPT_Project/
+  
 
-## 3. 프로젝트 구조와 개발 일정
-  3.1 프로젝트 구조
+## 3. 프로젝트 파일 설명과 개발 일정
+  3.1 프로젝트 파일 설명
+
+   <img width="173" alt="image" src="https://github.com/UserDongHu/chatGPT_Project/assets/137512514/a20652d2-8c93-4039-8cc0-3eb44917930a">
+
+   
+   - index.html : 초기 화면을 보여준다.
+   - pcGPT.js : 초기 화면에서 PC견적 추천과 PC질문 화면을 띄워주고, chatGPT API를 이용해서 출력을 보여준다.
+   - recommend.js : PC견적 화면의 폼을 나타내고, 폼에서 받은 예산, 작업, 모니터 사양으로 chatGPT가 출력한 값을 정리하고, 이를 정해진 포맷으로 맞춰준다.
+   - question.js : PC질문 화면의 폼을 나타내고, 폼에서 받은 질문과 chatGPT가 출력한 값을 구분해서 정리한다.
 
   3.2 개발 일정
-
+   - 
 ## 4. 역할 분담
+
   * 개인 프로젝트
 
 ## 5. UI / BM
