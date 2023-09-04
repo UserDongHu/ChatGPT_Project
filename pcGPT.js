@@ -34,11 +34,15 @@ $recommend.addEventListener('click', e => {
     data.push(
         {
             "role": "system",
-            "content": "assistant는 사용될 예산과 할 작업, 같이 쓸 모니터 사양과 추가 요구사항을 입력받아서 컴퓨터 견적을 추천해줍니다. 만약 추가 요구사항이 없다면 사용될 예산에 맞게 적절한 컴퓨터 견적을 추천해줍니다."
+            "content": "assistant는 사용될 예산과 할 작업, 같이 쓸 모니터 사양과 추가 요구사항을 입력받아서 정해진 포맷에 맞게 컴퓨터 견적을 출력해줍니다. 만약 추가 요구사항이 없다면 사용될 예산에 맞게 적절한 컴퓨터 견적을 추천해줍니다."
         },
         {
             "role": "user",
-            "content": "CPU: ~ (약 ~만원), 메인보드: ~ (약 ~만원), 메모리: ~  (약 ~만원), GPU: ~ (약 ~만원), 저장장치: ~ (약 ~만원),  파워: ~ (약 ~만원), 총 견적: 약 ~만원 이런식으로 결과를 보여줘"
+            "content": "CPU: ~ (약 ~만원), 메인보드: ~ (약 ~만원), 메모리: ~  (약 ~만원), GPU: ~ (약 ~만원), 저장장치: ~ (약 ~만원),  파워: ~ (약 ~만원), 총 견적: 약 ~만원 이런식으로 결과를 보여줘."
+        },
+        {
+            "role": "user",
+            "content": "그래픽카드가 없을때는 GPU : 내장그래픽 이라고 출력해줘"
         },
         {
             "role": "user",
@@ -112,6 +116,7 @@ $recommend.addEventListener('click', e => {
                     $save.addEventListener('click', function () {
                         if (getLocal() === -1) {
                             saveLocal(pc);
+                            window.alert("견적이 저장되었습니다.")
                         } else {
                             if (window.confirm("저장된 견적을 지우고 새로 저장하시겠습니까?")) {
                                 saveLocal(pc);

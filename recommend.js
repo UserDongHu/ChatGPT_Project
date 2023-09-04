@@ -44,7 +44,7 @@ export function createRecommend() {
     const etcTextarea = document.createElement('input');
     etcTextarea.setAttribute('type', 'text');
     etcTextarea.setAttribute('id', 'etc');
-    etcTextarea.setAttribute('placeholder', 'ex) AMD CPU를 사용, 램은 16G, 그래픽카드를 좋은걸로, 최대한 가성비');
+    etcTextarea.setAttribute('placeholder', 'ex) AMD CPU를 사용, 램은 16G, 내장 그래픽 사용, 최대한 가성비');
     etcDiv.appendChild(etcLabel);
     etcDiv.appendChild(etcTextarea);
     form.appendChild(etcDiv);
@@ -130,7 +130,7 @@ export function splitArr(result) {
         else if (arr[i].includes('파워:') || arr[i].includes('파워 :') || arr[i].includes('파워 서플라이:') || arr[i].includes('파워 서플라이 :')) {
             pc[5] = arr[i];
         }
-        else if (arr[i].includes('총 견적:') || arr[i].includes('총 견적 :')) {
+        else if (arr[i].includes('총 견적')) {
             pc[6] = arr[i];
         }
     }
@@ -158,16 +158,16 @@ export function splitArr2(result) {
         else if (arr[i].includes('메모리:') || arr[i].includes('메모리 :')) {
             pc[2] = arr[i];
         }
-        else if (arr[i].includes('GPU:') || arr[i].includes('GPU :')) {
+        else if (arr[i].includes('GPU:') || arr[i].includes('GPU :') || arr[i].includes('그래픽카드 :') || arr[i].includes('그래픽카드:') || arr[i].includes('그래픽 카드:') || arr[i].includes('그래픽 카드 :')) {
             pc[3] = arr[i];
         }
         else if (arr[i].includes('저장장치:') || arr[i].includes('저장장치 :')) {
             pc[4] = arr[i];
         }
-        else if (arr[i].includes('파워:') || arr[i].includes('파워 :')) {
+        else if (arr[i].includes('파워:') || arr[i].includes('파워 :') || arr[i].includes('파워 서플라이:') || arr[i].includes('파워 서플라이 :')) {
             pc[5] = arr[i];
         }
-        else if (arr[i].includes('총 견적:') || arr[i].includes('총 견적 :')) {
+        else if (arr[i].includes('총 견적')) {
             pc[6] = arr[i];
         }
     }
