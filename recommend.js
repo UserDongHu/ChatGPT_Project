@@ -9,6 +9,7 @@ export function createRecommend() {
     budgetInput.setAttribute('type', 'text');
     budgetInput.setAttribute('id', 'budget');
     budgetInput.setAttribute('placeholder', 'ex) 50만원, 100만원, 200만원');
+    budgetInput.setAttribute('autocomplete', 'off');
     budgetDiv.appendChild(budgetLabel);
     budgetDiv.appendChild(budgetInput);
     form.appendChild(budgetDiv);
@@ -21,6 +22,7 @@ export function createRecommend() {
     taskInput.setAttribute('type', 'text');
     taskInput.setAttribute('id', 'task');
     taskInput.setAttribute('placeholder', 'ex) 고사양 게임, 그래픽 디자인, 코딩, 문서작업 등');
+    taskInput.setAttribute('autocomplete', 'off');
     taskDiv.appendChild(taskLabel);
     taskDiv.appendChild(taskInput);
     form.appendChild(taskDiv);
@@ -33,6 +35,7 @@ export function createRecommend() {
     monitorInput.setAttribute('type', 'text');
     monitorInput.setAttribute('id', 'monitor');
     monitorInput.setAttribute('placeholder', 'ex) FHD 75hz, QHD 144hz, 4K 60hz 등');
+    monitorInput.setAttribute('autocomplete', 'off');
     monitorDiv.appendChild(monitorLabel);
     monitorDiv.appendChild(monitorInput);
     form.appendChild(monitorDiv);
@@ -45,6 +48,7 @@ export function createRecommend() {
     etcTextarea.setAttribute('type', 'text');
     etcTextarea.setAttribute('id', 'etc');
     etcTextarea.setAttribute('placeholder', 'ex) AMD CPU를 사용, 램은 16G, 내장 그래픽 사용, 최대한 가성비');
+    etcTextarea.setAttribute('autocomplete', 'off');
     etcDiv.appendChild(etcLabel);
     etcDiv.appendChild(etcTextarea);
     form.appendChild(etcDiv);
