@@ -68,7 +68,8 @@
 |기본 UI 구현|김동후||O|O|O|||||||
 |AI API 연동|김동후|||O|O|||||||
 |기능 및 결과 표시 구현|김동후|||O|O|O|O|O||||
-|UI 완성|김동후||||O|O|O|O||||
+|UI 완성|김동후||||O|O|O|O|O|||
+|마무리 및 문서작업|김동후|||||||||O|O|
 
 ## 5. UI / BM
   ![메인화면](https://github.com/UserDongHu/chatGPT_Project/assets/137512514/10f07725-7b2a-41a5-b814-6c9cf48f88dc)
