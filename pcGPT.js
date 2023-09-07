@@ -75,21 +75,33 @@ $recommend.addEventListener('click', e => {
     })
 
     $submitButton.addEventListener('click', e => {
-        $resultContainer.innerHTML = "";
-        const typing = document.createElement('div');
-        typing.className = 'waiting';
-        const typetext = document.createElement('p');
-        typetext.innerText = "잠시만 기다려주세요..";
-        typing.append(typetext);
-        $resultContainer.append(typing);
-        e.preventDefault();
-        const contents = $budget.value + "의 예산과 " + $task.value + "등을 하면서 " + $monitor.value + "사양이 모니터를 쓸 때 " + $etc.value + " , 컴퓨터 견적 추천해줘."
-        data.push({
-            "role": "user",
-            "content": contents
-        })
+        if ($budget.value == "") {
+            e.preventDefault();
+            $budget.focus();
+        } else if ($task.value == "") {
+            e.preventDefault();
+            $task.focus();
+        } else if ($monitor.value == "") {
+            e.preventDefault();
+            $monitor.focus();
+        } else {
+            $resultContainer.innerHTML = "";
+            const typing = document.createElement('div');
+            typing.className = 'waiting';
+            const typetext = document.createElement('p');
+            typetext.innerText = "잠시만 기다려주세요..";
+            typing.append(typetext);
+            $resultContainer.append(typing);
+            e.preventDefault();
+            const contents = $budget.value + "의 예산과 " + $task.value + "등을 하면서 " + $monitor.value + "사양이 모니터를 쓸 때 " + $etc.value + " , 컴퓨터 견적 추천해줘."
+            data.push({
+                "role": "user",
+                "content": contents
+            })
 
-        recommendchatGPTAPI()
+            recommendchatGPTAPI()
+        }
+
     })
 
     function recommendchatGPTAPI() {

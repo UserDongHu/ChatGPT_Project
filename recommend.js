@@ -47,7 +47,7 @@ export function createRecommend() {
     const etcTextarea = document.createElement('input');
     etcTextarea.setAttribute('type', 'text');
     etcTextarea.setAttribute('id', 'etc');
-    etcTextarea.setAttribute('placeholder', 'ex) AMD CPU를 사용, 램은 16G, 내장 그래픽 사용, 최대한 가성비');
+    etcTextarea.setAttribute('placeholder', 'ex) AMD CPU를 사용, 램은 16G, 내장 그래픽 사용 등');
     etcTextarea.setAttribute('autocomplete', 'off');
     etcDiv.appendChild(etcLabel);
     etcDiv.appendChild(etcTextarea);
@@ -82,27 +82,27 @@ export function createPC(pc) {
     let searchURL = "https://search.danawa.com/dsearch.php?query=";
 
     $cpu.innerHTML = pc[0] + "<br>";
-    $cpu.setAttribute('href', searchURL + pc[0]);
+    $cpu.setAttribute('href', searchURL + pc[0].substring(pc[0].indexOf(":")+1));
     $cpu.setAttribute('target', '_blank');
 
     $mainboard.innerHTML = pc[1] + "<br>";
-    $mainboard.setAttribute('href', searchURL + pc[1]);
+    $mainboard.setAttribute('href', searchURL + pc[1].substring(pc[1].indexOf(":")+1));
     $mainboard.setAttribute('target', '_blank');
 
     $memory.innerHTML = pc[2] + "<br>";
-    $memory.setAttribute('href', searchURL + pc[2]);
+    $memory.setAttribute('href', searchURL + pc[2].substring(pc[2].indexOf(":")+1));
     $memory.setAttribute('target', '_blank');
 
     $GPU.innerHTML = pc[3] + "<br>";
-    $GPU.setAttribute('href', searchURL + pc[3]);
+    $GPU.setAttribute('href', searchURL + pc[3].substring(pc[3].indexOf(":")+1));
     $GPU.setAttribute('target', '_blank');
 
     $storage.innerHTML = pc[4] + "<br>";
-    $storage.setAttribute('href', searchURL + pc[4]);
+    $storage.setAttribute('href', searchURL + pc[4].substring(pc[4].indexOf(":")+1));
     $storage.setAttribute('target', '_blank');
 
     $power.innerHTML = pc[5] + "<br>";
-    $power.setAttribute('href', searchURL + pc[5]);
+    $power.setAttribute('href', searchURL + pc[5].substring(pc[5].indexOf(":")+1));
     $power.setAttribute('target', '_blank');
 
     $total.innerHTML = pc[6] + "<br>";
