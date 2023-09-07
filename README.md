@@ -22,7 +22,7 @@
    
   2.2 배포 URL
   
-  https://userdonghu.github.io/chatGPT_Project/
+  https://userdonghu.github.io/ChatGPT_Project/
   
 
 ## 3. 프로젝트 파일 설명 및 구현 기능
