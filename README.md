@@ -27,9 +27,22 @@
 
 ## 3. 프로젝트 파일 설명 및 구현 기능
   3.1 프로젝트 파일 설명
-  
-   <img width="173" alt="image" src="https://github.com/UserDongHu/chatGPT_Project/assets/137512514/a20652d2-8c93-4039-8cc0-3eb44917930a">
 
+  ```
+.
+├── README.md
+├── img
+│   ├── bg3.jpg
+│   ├── favicon.ico
+│   ├── logof.png
+│   ├── question.png
+│   └── recommend.png
+├── index.html
+├── pcGPT.css
+├── pcGPT.js
+├── question.js
+└── recommend.js
+```
    - index.html
      - 초기화면을 보여줍니다.
    - pcGPT.js
@@ -38,7 +51,7 @@
      - 출력된 PC견적 결과를 로컬스토리지에 저장하고, 로컬스토리지에 저장된 값을 불러와서 출력합니다.
      - PC질문 화면을 선택했을 때, ChatGPT API를 이용하여 입력받은 질문을 데이터로 넘기고, 그 결과를 채팅형식으로 출력합니다.
    - recommend.js
-     - PC견적 화면을 선택했을 때, 사용자가 입력할 폼을 만듭니다ㅣ.
+     - PC견적 화면을 선택했을 때, 사용자가 입력할 폼을 만듭니다.
      - 폼에 입력받은 값을 분류하여 배열로 정리하고, 이를 하이퍼링크로 생성하여 반환합니다.
    - question.js
      - PC선택 화면을 선택했을 때, 질문을 입력할 폼을 만듭니다.
