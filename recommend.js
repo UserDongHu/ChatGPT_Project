@@ -112,8 +112,8 @@ export function createPC(pc) {
     return $pc;
 }
 
-export function splitArr(result) {
-    let arr = result.split('\n');
+export function splitArr(result, n) {
+    let arr = result.split(n);
     let pc = [-1, -1, -1, -1, -1, -1, -1];
     for (let i = 0; i < arr.length; i++) {
         if (arr[i].includes('CPU:') || arr[i].includes('CPU :')) {
@@ -149,34 +149,6 @@ export function splitArr(result) {
     return pc;
 }
 
-export function splitArr2(result) {
-    let arr = result.split(',');
-    let pc = [-1, -1, -1, -1, -1, -1, -1];
-    for (let i = 0; i < arr.length; i++) {
-        if (arr[i].includes('CPU:') || arr[i].includes('CPU :')) {
-            pc[0] = arr[i];
-        }
-        else if (arr[i].includes('메인보드:') || arr[i].includes('메인보드 :')) {
-            pc[1] = arr[i];
-        }
-        else if (arr[i].includes('메모리:') || arr[i].includes('메모리 :')) {
-            pc[2] = arr[i];
-        }
-        else if (arr[i].includes('GPU:') || arr[i].includes('GPU :') || arr[i].includes('그래픽카드 :') || arr[i].includes('그래픽카드:') || arr[i].includes('그래픽 카드:') || arr[i].includes('그래픽 카드 :')) {
-            pc[3] = arr[i];
-        }
-        else if (arr[i].includes('저장장치:') || arr[i].includes('저장장치 :')) {
-            pc[4] = arr[i];
-        }
-        else if (arr[i].includes('파워:') || arr[i].includes('파워 :') || arr[i].includes('파워 서플라이:') || arr[i].includes('파워 서플라이 :')) {
-            pc[5] = arr[i];
-        }
-        else if (arr[i].includes('총 견적')) {
-            pc[6] = arr[i];
-        }
-    }
-    return pc;
-}
 
 export function saveLocal(pc) {
     localStorage.setItem("savepc", pc);

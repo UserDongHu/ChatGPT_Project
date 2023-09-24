@@ -1,4 +1,4 @@
-import { createRecommend, createPC, splitArr, splitArr2, saveLocal, getLocal, deleteLocal } from "./recommend.js";
+import { createRecommend, createPC, splitArr, saveLocal, getLocal, deleteLocal } from "./recommend.js";
 import { createQuestion, createChat } from "./question.js";
 
 const $home = document.querySelector('#home');
@@ -57,7 +57,7 @@ $recommend.addEventListener('click', e => {
         if (getLocal() === -1) {
             $resultContainer.innerHTML = "<div>저장된 견적이 없습니다.</div>"
         } else {
-            const pc = splitArr2(getLocal());
+            const pc = splitArr(getLocal(), ',');
             const mypc = createPC(pc);
             $resultContainer.appendChild(mypc);
 
@@ -116,7 +116,7 @@ $recommend.addEventListener('click', e => {
             .then(res => res.json())
             .then(json => {
                 let result = json.choices[0].message.content;
-                const pc = splitArr(result);
+                const pc = splitArr(result, '\n');
                 if (pc === -1) {
                     console.log(result);
                     $resultContainer.innerHTML = `<div>오류가 발생했습니다. 더 자세하게 적으시고 다시 시도해주세요.</div>`;
